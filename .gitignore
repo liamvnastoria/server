@@ -59,3 +59,25 @@ VENV/
 # OS generated files
 Thumbs.db
 .DS_Store
+
+# Apache file 
+*.htaccess
+
+# Nginx file 
+*.conf
+
+# Docker
+Dockerfile
+docker-compose.yml
+docker-compose.override.yml
+docker-compose.prod.yml
+docker-compose.dev.yml
+docker-compose.test.yml
+docker-compose.local.yml
+docker-compose.staging.yml
+docker-compose.debug.yml
+docker-compose.ci.yml
+docker-compose.k8s.yml
+docker-compose.k8s.override.yml
+docker-compose.k8s.prod.yml
+docker-compose.k8s.dev.yml  
