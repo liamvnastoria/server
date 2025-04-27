@@ -28,7 +28,7 @@ mkdir %APP_DIR%
 
 REM Télécharger l'application depuis Git (ou autre méthode)
 echo Téléchargement de l'application...
-git clone https://github.com/votre-repository/%APP_NAME% %APP_DIR%
+git clone https://github.com/liamvnastoria/%APP_NAME% %APP_DIR%
 
 REM Aller dans le répertoire de l'application
 cd %APP_DIR%

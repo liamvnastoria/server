@@ -20,7 +20,7 @@ sudo mkdir -p $APP_DIR
 # Copier l'application dans le répertoire
 echo "Téléchargement de l'application..."
 # Remplacez cette ligne par la méthode d'installation spécifique à votre application
-git clone https://github.com/votre-repository/$APP_NAME.git $APP_DIR
+git clone https://github.com/liamvnastoria/$APP_NAME.git $APP_DIR
 
 # Accéder au répertoire de l'application
 cd $APP_DIR
