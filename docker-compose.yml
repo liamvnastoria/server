@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  server:
+    build: .
+    container_name: server-container
+    ports:
+      - "3000:3000"  # Mapper le port 3000 de l'hôte vers le port 3000 du conteneur
+    volumes:
+      - .:/usr/src/app  # Monter le répertoire de l'application en local vers le conteneur
+    environment:
+      - NODE_ENV=production  # Variables d'environnement (à personnaliser)
+    networks:
+      - server-network
+    restart: always  # Redémarrer automatiquement le conteneur en cas d'échec
+
+networks:
+  server-network:
+    driver: bridge
