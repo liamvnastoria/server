@@ -14,7 +14,10 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "clean": "rimraf dist", 
-    "prepare": "husky install"
+    "prepare": "husky install", 
+    "install:all": "npm install && npm run build:electron && npm run docker:build",
+    "install:frontend": "npm install --prefix frontend",
+    "install:backend": "npm install --prefix backend"
   },
   "repository": {
     "type": "git",
