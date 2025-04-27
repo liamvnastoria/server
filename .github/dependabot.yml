@@ -19,5 +19,4 @@ updates:
       interval: "weekly" # Vérification des mises à jour chaque semaine
     ignore:
       - dependency-name: "example-python-package" # Exemple pour ignorer une dépendance spécifique
-        versions: ["2.x"] # Ignorer les mises à jour pour une version spécifique
 
