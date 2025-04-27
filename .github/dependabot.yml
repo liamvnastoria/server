@@ -1,12 +1,23 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+# Configuration de Dependabot pour les mises à jour des dépendances
+# Documentation : https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 version: 2
 updates:
-  - package-ecosystem: "" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  # Mises à jour pour les dépendances Node.js
+  - package-ecosystem: "npm"
+    directory: "/" # Emplacement du fichier package.json
     schedule:
-      interval: "weekly"
-      
+      interval: "weekly" # Vérification des mises à jour chaque semaine
+    ignore:
+      - dependency-name: "example-package" # Exemple pour ignorer une dépendance spécifique
+        versions: ["1.x"] # Ignorer les mises à jour pour une version spécifique
+
+  # Mises à jour pour les dépendances Python
+  - package-ecosystem: "pip"
+    directory: "/" # Emplacement du fichier requirements.txt
+    schedule:
+      interval: "weekly" # Vérification des mises à jour chaque semaine
+    ignore:
+      - dependency-name: "example-python-package" # Exemple pour ignorer une dépendance spécifique
+        versions: ["2.x"] # Ignorer les mises à jour pour une version spécifique
+
