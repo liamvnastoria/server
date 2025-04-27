@@ -1,11 +1,8 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "A sample server project",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
     "test": "jest"
   },
@@ -13,17 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/liamvnastoria/server.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["server", "nodejs"],
+  "author": "Liam Von Astoria",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/liamvnastoria/server/issues"
   },
   "homepage": "https://github.com/liamvnastoria/server#readme",
-  "dependencies": {
-    "fs": "^0.0.1-security",
-    "path": "^0.12.7"
-  },
   "devDependencies": {
     "jest": "^29.7.0"
   }
