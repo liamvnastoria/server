@@ -4,6 +4,8 @@
 APP_NAME="server"
 APP_DIR="/opt/$APP_NAME"
 SERVICE_FILE="/etc/systemd/system/$APP_NAME.service"
+NGINX_CONF="/etc/nginx/sites-available/$APP_NAME"
+NGINX_LINK="/etc/nginx/sites-enabled/$APP_NAME"
 
 # Mettre à jour le système
 echo "Mise à jour du système..."
@@ -11,7 +13,7 @@ sudo apt-get update -y
 
 # Installer les dépendances nécessaires (par exemple Node.js, Python, ou autres)
 echo "Installation des dépendances..."
-sudo apt-get install -y curl wget git build-essential
+sudo apt-get install -y curl wget git build-essential nginx
 
 # Créer le répertoire pour l'application
 echo "Création du répertoire de l'application..."
@@ -19,7 +21,6 @@ sudo mkdir -p $APP_DIR
 
 # Copier l'application dans le répertoire
 echo "Téléchargement de l'application..."
-# Remplacez cette ligne par la méthode d'installation spécifique à votre application
 git clone https://github.com/liamvnastoria/$APP_NAME.git $APP_DIR
 
 # Accéder au répertoire de l'application
@@ -60,4 +61,34 @@ sudo systemctl daemon-reload
 sudo systemctl enable $APP_NAME.service
 sudo systemctl start $APP_NAME.service
 
-echo "Le service $APP_NAME est maintenant installé et en cours d'exécution."
+# Configurer Nginx
+echo "Configuration de Nginx..."
+cat <<EOL | sudo tee $NGINX_CONF > /dev/null
+server {
+    listen 80;
+    server_name _;
+
+    location / {
+        proxy_pass http://localhost:3000; # Remplacez 3000 par le port utilisé par votre application
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade \$http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host \$host;
+        proxy_cache_bypass \$http_upgrade;
+    }
+
+    error_page 404 /404.html;
+    location = /404.html {
+        root /var/www/html;
+    }
+}
+EOL
+
+# Activer la configuration Nginx
+sudo ln -s $NGINX_CONF $NGINX_LINK
+sudo nginx -t
+sudo systemctl restart nginx
+
+echo "Le service $APP_NAME et le serveur Nginx sont maintenant configurés et en cours d'exécution."
+echo "Installation terminée !"
+echo "Vous pouvez accéder à l'application via http://<votre_ip>."
